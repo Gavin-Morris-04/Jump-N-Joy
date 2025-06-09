@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jump-N-Joy - Spacewalks & Entertainment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ff6b9d, #c44569, #f8b500, #40407a);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            color: white;
+            text-align: center;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="stars" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="white" opacity="0.8"/><circle cx="75" cy="75" r="1.5" fill="white" opacity="0.6"/><circle cx="50" cy="80" r="1" fill="white" opacity="0.4"/></pattern></defs><rect width="100%" height="100%" fill="url(%23stars)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: bounce 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-10px); }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 80px 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #c44569;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .service-card h3 {
+            color: #c44569;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0;
+            color: white;
+        }
+
+        .pricing h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            color: #f8b500;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            font-size: 1.2rem;
+        }
+
+        .why-choose {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .why-choose h3 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .why-choose p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero {
+                padding: 140px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about h2, .pricing h2, .contact h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav .container {
+                padding: 0 10px;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .nav-links {
+                gap: 0.5rem;
+            }
+            
+            .nav-links a {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.8rem;
+            }
+            
+            .hero {
+                padding: 120px 0 40px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cta-button {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+            }
+            
+            .pricing-grid, .contact-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about h2, .pricing h2, .contact h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Jump-N-Joy</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Jump-N-Joy</h1>
+                <p>Spacewalks & Entertainment • Character Rentals</p>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Bringing smiles to New Orleans families since day one!</p>
+                <a href="#about" class="cta-button">Discover the Fun!</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Our Family</h2>
+                    <p>Welcome to Jump-N-Joy, your premier family-operated entertainment company right here in beautiful New Orleans! For years, our family has been dedicated to bringing smiles, laughter, and unforgettable memories to children and families throughout the greater New Orleans area.</p>
+                    
+                    <p>What started as a small family dream has grown into one of the most trusted names in party entertainment. We understand that every celebration is special, and we're committed to making your event absolutely magical with our wide selection of spacewalks, beloved character rentals, and party essentials.</p>
+                    
+                    <p>As a local, family-owned business, we take pride in our personal service, competitive pricing, and the genuine care we put into every single event. Your joy is our joy, and we can't wait to be part of your next celebration!</p>
+                </div>
+                <div class="about-image">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f8ff'/%3E%3Ccircle cx='100' cy='100' r='40' fill='%23ff6b9d'/%3E%3Ccircle cx='300' cy='100' r='40' fill='%23c44569'/%3E%3Crect x='50' y='200' width='300' height='80' rx='10' fill='%23f8b500'/%3E%3Ctext x='200' y='240' font-family='Arial' font-size='16' text-anchor='middle' fill='white'%3EYour Business Photo%3C/text%3E%3C/svg%3E" alt="Jump-N-Joy Family Business" style="width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                </div>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🏰 Spacewalks</h3>
+                    <p>Safe, clean, and incredibly fun bounce houses for all ages! Perfect for backyard parties and events.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🎭 Character Rentals</h3>
+                    <p>Beloved cartoon characters to make your party unforgettable! Professional costumes and friendly performers.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🍿 Party Essentials</h3>
+                    <p>Cotton candy, popcorn, snowball machines, tables, chairs, and tents - everything you need!</p>
+                </div>
+                <div class="service-card">
+                    <h3>🚚 Free Delivery</h3>
+                    <p>Convenient setup and delivery throughout New Orleans! We handle everything so you can enjoy the party.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Our Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Cartoon Characters</h3>
+                    <div class="price">$130</div>
+                    <p>Bring your child's favorite characters to life! Professional costume rentals with friendly performers.</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>Spacewalk</h3>
+                    <div class="price">$130</div>
+                    <p>Safe and exciting bounce houses that will keep the kids entertained for hours!</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>Snowball Machine</h3>
+                    <div class="price">$500</div>
+                    <p>Beat the New Orleans heat with delicious snowballs - a local favorite!</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>Cotton Candy Machine</h3>
+                    <div class="price">$100</div>
+                    <p>Sweet, fluffy cotton candy that melts in your mouth - kids love it!</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>Popcorn Machine</h3>
+                    <div class="price">$100</div>
+                    <p>Fresh, hot popcorn that fills the air with that irresistible aroma!</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>Tables & Chairs</h3>
+                    <div class="price">$10 / $3</div>
+                    <p>Tables $10 each • Chairs $3 each<br>Complete your party setup with our quality rentals!</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>Tents</h3>
+                    <div class="price">$200</div>
+                    <p>Weather protection and shade for outdoor events - essential for New Orleans weather!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 3rem;">Ready to make your next event unforgettable? Contact our friendly family team today!</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>📞 Call Us</h3>
+                    <p>(504) 201-6680</p>
+                    <p style="margin-top: 1rem; font-size: 1rem;">Call us today to check availability and book your party essentials!</p>
+                </div>
+                <div class="contact-card">
+                    <h3>✉️ Email Us</h3>
+                    <p>jerrilewis1969@aol.com</p>
+                    <p style="margin-top: 1rem; font-size: 1rem;">Send us your party details and we'll get back to you quickly!</p>
+                </div>
+                <div class="contact-card">
+                    <h3>📍 Serving New Orleans</h3>
+                    <p>Local Family Business</p>
+                    <p style="margin-top: 1rem; font-size: 1rem;">Proudly serving the greater New Orleans area with free delivery and setup!</p>
+                </div>
+            </div>
+            
+            <div class="why-choose">
+                <h3>Why Choose Jump-N-Joy?</h3>
+                <p>✨ Family-owned and operated • ✨ Local New Orleans business • ✨ Free delivery and setup • ✨ Clean, safe equipment • ✨ Friendly, reliable service • ✨ Competitive pricing</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Jump-N-Joy Entertainment. Proudly serving New Orleans families with joy and laughter!</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.service-card, .pricing-card, .contact-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
