@@ -104,6 +104,116 @@
             opacity: 0.3;
         }
 
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-dot {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-dot:nth-child(1) {
+            width: 25px;
+            height: 25px;
+            background: rgba(255, 255, 255, 0.6);
+            top: 15%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .floating-dot:nth-child(2) {
+            width: 18px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.4);
+            top: 70%;
+            left: 85%;
+            animation-delay: 1.5s;
+        }
+
+        .floating-dot:nth-child(3) {
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            top: 40%;
+            left: 80%;
+            animation-delay: 3s;
+        }
+
+        .floating-dot:nth-child(4) {
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            top: 80%;
+            left: 25%;
+            animation-delay: 4.5s;
+        }
+
+        .floating-dot:nth-child(5) {
+            width: 15px;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            top: 25%;
+            left: 60%;
+            animation-delay: 2s;
+        }
+
+        .moving-string {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: moveString 10s linear infinite;
+        }
+
+        .moving-string:nth-child(6) {
+            width: 250px;
+            top: 30%;
+            left: -250px;
+            animation-delay: 0s;
+        }
+
+        .moving-string:nth-child(7) {
+            width: 180px;
+            top: 65%;
+            left: -180px;
+            animation-delay: 5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes moveString {
+            0% {
+                left: -250px;
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+
         .hero-content {
             position: relative;
             z-index: 2;
@@ -152,14 +262,92 @@
         .about {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about .floating-dot:nth-child(1) {
+            width: 20px;
+            height: 20px;
+            background: #ff6b9d;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .about .floating-dot:nth-child(2) {
+            width: 15px;
+            height: 15px;
+            background: #c44569;
+            top: 60%;
+            left: 80%;
+            animation-delay: 1s;
+        }
+
+        .about .floating-dot:nth-child(3) {
+            width: 25px;
+            height: 25px;
+            background: #f8b500;
+            top: 30%;
+            left: 70%;
+            animation-delay: 2s;
+        }
+
+        .about .floating-dot:nth-child(4) {
+            width: 18px;
+            height: 18px;
+            background: #40407a;
+            top: 70%;
+            left: 20%;
+            animation-delay: 3s;
+        }
+
+        .about .floating-dot:nth-child(5) {
+            width: 12px;
+            height: 12px;
+            background: #ff6b9d;
+            top: 10%;
+            left: 50%;
+            animation-delay: 4s;
+        }
+
+        .about .floating-dot:nth-child(6) {
+            width: 22px;
+            height: 22px;
+            background: #c44569;
+            top: 80%;
+            left: 60%;
+            animation-delay: 5s;
+        }
+
+        .about .moving-string:nth-child(7) {
+            width: 200px;
+            top: 25%;
+            left: -200px;
+            animation-delay: 0s;
+            background: linear-gradient(90deg, transparent, #ff6b9d, transparent);
+        }
+
+        .about .moving-string:nth-child(8) {
+            width: 150px;
+            top: 75%;
+            left: -150px;
+            animation-delay: 4s;
+            background: linear-gradient(90deg, transparent, #f8b500, transparent);
+        }
+
+        .about .moving-string:nth-child(9) {
+            width: 180px;
+            top: 50%;
+            left: -180px;
+            animation-delay: 2s;
+            background: linear-gradient(90deg, transparent, #c44569, transparent);
         }
 
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            display: block;
             margin-bottom: 4rem;
+            text-align: center;
         }
 
         .about-text h2 {
@@ -205,6 +393,69 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 80px 0;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing .floating-dot:nth-child(1) {
+            width: 22px;
+            height: 22px;
+            background: rgba(248, 181, 0, 0.7);
+            top: 15%;
+            left: 12%;
+            animation-delay: 0.5s;
+        }
+
+        .pricing .floating-dot:nth-child(2) {
+            width: 16px;
+            height: 16px;
+            background: rgba(255, 107, 157, 0.6);
+            top: 65%;
+            left: 85%;
+            animation-delay: 2s;
+        }
+
+        .pricing .floating-dot:nth-child(3) {
+            width: 28px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.4);
+            top: 35%;
+            left: 75%;
+            animation-delay: 3.5s;
+        }
+
+        .pricing .floating-dot:nth-child(4) {
+            width: 19px;
+            height: 19px;
+            background: rgba(196, 69, 105, 0.8);
+            top: 75%;
+            left: 25%;
+            animation-delay: 1s;
+        }
+
+        .pricing .floating-dot:nth-child(5) {
+            width: 14px;
+            height: 14px;
+            background: rgba(248, 181, 0, 0.9);
+            top: 20%;
+            left: 55%;
+            animation-delay: 4s;
+        }
+
+        .pricing .moving-string:nth-child(6) {
+            width: 220px;
+            top: 40%;
+            left: -220px;
+            animation-delay: 1s;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+        }
+
+        .pricing .moving-string:nth-child(7) {
+            width: 170px;
+            top: 70%;
+            left: -170px;
+            animation-delay: 6s;
+            background: linear-gradient(90deg, transparent, rgba(248, 181, 0, 0.6), transparent);
         }
 
         .pricing h2 {
@@ -255,6 +506,78 @@
             color: white;
             text-align: center;
             padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact .floating-dot:nth-child(1) {
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.6);
+            top: 18%;
+            left: 8%;
+            animation-delay: 1s;
+        }
+
+        .contact .floating-dot:nth-child(2) {
+            width: 17px;
+            height: 17px;
+            background: rgba(248, 181, 0, 0.7);
+            top: 62%;
+            left: 88%;
+            animation-delay: 2.5s;
+        }
+
+        .contact .floating-dot:nth-child(3) {
+            width: 26px;
+            height: 26px;
+            background: rgba(64, 64, 122, 0.5);
+            top: 38%;
+            left: 78%;
+            animation-delay: 4s;
+        }
+
+        .contact .floating-dot:nth-child(4) {
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            top: 78%;
+            left: 22%;
+            animation-delay: 0.5s;
+        }
+
+        .contact .floating-dot:nth-child(5) {
+            width: 13px;
+            height: 13px;
+            background: rgba(248, 181, 0, 0.9);
+            top: 25%;
+            left: 52%;
+            animation-delay: 3s;
+        }
+
+        .contact .floating-dot:nth-child(6) {
+            width: 21px;
+            height: 21px;
+            background: rgba(255, 255, 255, 0.4);
+            top: 85%;
+            left: 65%;
+            animation-delay: 5s;
+        }
+
+        .contact .moving-string:nth-child(7) {
+            width: 200px;
+            top: 30%;
+            left: -200px;
+            animation-delay: 2s;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+        }
+
+        .contact .moving-string:nth-child(8) {
+            width: 160px;
+            top: 68%;
+            left: -160px;
+            animation-delay: 7s;
+            background: linear-gradient(90deg, transparent, rgba(248, 181, 0, 0.7), transparent);
         }
 
         .contact h2 {
@@ -319,6 +642,57 @@
             padding: 2rem 0;
         }
 
+        /* Common Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-dot {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .moving-string {
+            position: absolute;
+            height: 2px;
+            animation: moveString 8s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes moveString {
+            0% {
+                left: -250px;
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             nav .container {
@@ -351,10 +725,6 @@
             
             .hero p {
                 font-size: 1.2rem;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
             }
             
             .about h2, .pricing h2, .contact h2 {
@@ -427,6 +797,15 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="floating-elements">
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="moving-string"></div>
+            <div class="moving-string"></div>
+        </div>
         <div class="container">
             <div class="hero-content">
                 <h1>Jump-N-Joy</h1>
@@ -439,6 +818,17 @@
 
     <!-- About Section -->
     <section id="about" class="about">
+        <div class="floating-elements">
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="moving-string"></div>
+            <div class="moving-string"></div>
+            <div class="moving-string"></div>
+        </div>
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
@@ -448,9 +838,6 @@
                     <p>What started as a small family dream has grown into one of the most trusted names in party entertainment. We understand that every celebration is special, and we're committed to making your event absolutely magical with our wide selection of spacewalks, beloved character rentals, and party essentials.</p>
                     
                     <p>As a local, family-owned business, we take pride in our personal service, competitive pricing, and the genuine care we put into every single event. Your joy is our joy, and we can't wait to be part of your next celebration!</p>
-                </div>
-                <div class="about-image">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f8ff'/%3E%3Ccircle cx='100' cy='100' r='40' fill='%23ff6b9d'/%3E%3Ccircle cx='300' cy='100' r='40' fill='%23c44569'/%3E%3Crect x='50' y='200' width='300' height='80' rx='10' fill='%23f8b500'/%3E%3Ctext x='200' y='240' font-family='Arial' font-size='16' text-anchor='middle' fill='white'%3EYour Business Photo%3C/text%3E%3C/svg%3E" alt="Jump-N-Joy Family Business" style="width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
                 </div>
             </div>
             
@@ -477,6 +864,15 @@
 
     <!-- Pricing Section -->
     <section id="pricing" class="pricing">
+        <div class="floating-elements">
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="moving-string"></div>
+            <div class="moving-string"></div>
+        </div>
         <div class="container">
             <h2>Our Pricing</h2>
             <div class="pricing-grid">
@@ -521,6 +917,16 @@
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
+        <div class="floating-elements">
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="moving-string"></div>
+            <div class="moving-string"></div>
+        </div>
         <div class="container">
             <h2>Get in Touch</h2>
             <p style="font-size: 1.3rem; margin-bottom: 3rem;">Ready to make your next event unforgettable? Contact our friendly family team today!</p>
