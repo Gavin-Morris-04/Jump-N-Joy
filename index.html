@@ -80,7 +80,7 @@
             background: url('images/480574628_1175526744279776_5196255453068081582_n.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-repeat: no-repeat;
             color: white;
             text-align: center;
             padding: 150px 0 120px;
@@ -90,6 +90,32 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        /* Only use fixed background on desktop */
+        @media (min-width: 769px) {
+            .hero {
+                background-attachment: fixed;
+            }
+        }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+                min-height: 100vh;
+                background-size: cover;
+                background-position: center center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 100vh;
+                padding: 120px 0 80px;
+                background-size: cover;
+                background-position: center;
+            }
         }
 
         .hero::before {
@@ -803,7 +829,7 @@
             <div class="hero-content">
                 <h1>Jump-N-Joy</h1>
                 <p>Spacewalks & Entertainment • Character Rentals</p>
-                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Let Us Put a Smile on Your Kids Face! Your Kids Will Love It!</p>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Bringing smiles to New Orleans families since day one!</p>
                 <a href="#about" class="cta-button">Discover the Fun!</a>
             </div>
         </div>
